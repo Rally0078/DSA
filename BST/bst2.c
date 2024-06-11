@@ -1,7 +1,5 @@
-// Binary Search Tree operations in C++
-
-#include <iostream>
-using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
 
 struct node {
   int key;
@@ -23,10 +21,40 @@ void inorder(struct node *root) {
     inorder(root->left);
 
     // Traverse root
-    cout << root->key << " -> ";
+    printf("%d -> ", root->key);
 
     // Traverse right
     inorder(root->right);
+  }
+}
+
+void preorder(struct node *root){
+   if (root != NULL) {
+    // Traverse left
+    printf("%d -> ", root->key);
+    preorder(root->left);
+
+    // Traverse root
+   
+
+    // Traverse right
+    preorder(root->right);
+  }
+}
+
+void postorder(struct node *root){
+   if (root != NULL) {
+    // Traverse left
+    
+    postorder(root->left);
+
+    // Traverse root
+   
+
+    // Traverse right
+    postorder(root->right);
+
+    printf("%d -> ", root->key);
   }
 }
 
@@ -65,6 +93,7 @@ struct node *deleteNode(struct node *root, int key) {
     root->left = deleteNode(root->left, key);
   else if (key > root->key)
     root->right = deleteNode(root->right, key);
+
   else {
     // If the node is with only one child or no child
     if (root->left == NULL) {
@@ -92,20 +121,16 @@ struct node *deleteNode(struct node *root, int key) {
 // Driver code
 int main() {
   struct node *root = NULL;
-  root = insert(root, 8);
-  root = insert(root, 3);
   root = insert(root, 1);
-  root = insert(root, 6);
-  root = insert(root, 7);
-  root = insert(root, 10);
-  root = insert(root, 14);
+  root = insert(root, 2);
+  root = insert(root, 3);
   root = insert(root, 4);
+  root = insert(root, 5);
 
-  cout << "Inorder traversal: ";
+  printf("Inorder traversal: ");
   inorder(root);
-
-  cout << "\nAfter deleting 10\n";
-  root = deleteNode(root, 10);
-  cout << "Inorder traversal: ";
-  inorder(root);
+  printf("\nPreorder traversal: ");
+  preorder(root);
+  printf("\nPostorder traversal: ");
+  postorder(root);
 }

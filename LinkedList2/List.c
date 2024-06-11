@@ -101,7 +101,6 @@ Position Find(int x, List L)
 	
 	while(P!=NULL && P->element!=x)
 	{
-		printf("%d\t",P->element);
 		P=P->next;
 	}
 	return P;
@@ -119,9 +118,12 @@ Position Find_Previous(int x, List L)
 void Print_List(List L)
 {
 	List toPrint = L->next;
+	int i = 1;
 	while(toPrint!=NULL)
 	{
-		printf(" %d ",toPrint->element);
+		
+		printf("element number %d: %d\n",i,toPrint->element);
+		i++;
 		toPrint = toPrint->next;
 	}
 }

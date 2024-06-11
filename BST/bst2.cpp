@@ -30,6 +30,36 @@ void inorder(struct node *root) {
   }
 }
 
+void preorder(struct node *root){
+   if (root != NULL) {
+    // Traverse left
+     cout << root->key << " -> ";
+    preorder(root->left);
+
+    // Traverse root
+   
+
+    // Traverse right
+    preorder(root->right);
+  }
+}
+
+void postorder(struct node *root){
+   if (root != NULL) {
+    // Traverse left
+    
+    postorder(root->left);
+
+    // Traverse root
+   
+
+    // Traverse right
+    postorder(root->right);
+
+     cout << root->key << " -> ";
+  }
+}
+
 // Insert a node
 struct node *insert(struct node *node, int key) {
   // Return a new node if the tree is empty
@@ -92,20 +122,16 @@ struct node *deleteNode(struct node *root, int key) {
 // Driver code
 int main() {
   struct node *root = NULL;
-  root = insert(root, 8);
-  root = insert(root, 3);
   root = insert(root, 1);
-  root = insert(root, 6);
-  root = insert(root, 7);
-  root = insert(root, 10);
-  root = insert(root, 14);
-  root = insert(root, 4);
-
+  root = insert(root, 2);
+  root = insert(root, 3);
+  cout<<root->left->key<<"\n";
+  cout<<root->key<<"\n";
+  cout<<root->right->key<<"\n";
   cout << "Inorder traversal: ";
   inorder(root);
-
-  cout << "\nAfter deleting 10\n";
-  root = deleteNode(root, 10);
-  cout << "Inorder traversal: ";
-  inorder(root);
+  cout<<"\nPreorder Traversal: ";
+  preorder(root);
+  cout<<"\nPostorder Traversal: ";
+  postorder(root);
 }
